@@ -12,5 +12,14 @@ class Question(models.Model):
   def __unicode__(self):
     return self.title
 
-  def get_absolure_url(self):
+  def get_absolute_url(self):
     return reverse("question_detail", args=[self.id])
+
+class Answer(models.Model):
+    questions = models.ForeignKey(Question)
+    user = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    text = models.TextField()
+
+    def __unicode__(self):
+      return self.text
