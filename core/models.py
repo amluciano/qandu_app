@@ -16,10 +16,10 @@ class Question(models.Model):
     return reverse("question_detail", args=[self.id])
 
 class Answer(models.Model):
-    questions = models.ForeignKey(Question)
-    user = models.ForeignKey(User)
-    created_at = models.DateTimeField(auto_now_add=True)
-    text = models.TextField()
+   question = models.ForeignKey(Question)
+   user = models.ForeignKey(User)
+   created_at = models.DateTimeField(auto_now_add=True)
+   text = models.TextField()
 
-    def __unicode__(self):
+   def __unicode__(self):
       return self.text
