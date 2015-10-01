@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='answer',
             name='user',
-            field=models.ForeignKey(default='exit', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=False,
         ),
     ]
