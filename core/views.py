@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.views.generic import CreateView
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 from .models import *
+
 
 # Create your views here.
 class Home(TemplateView):
@@ -55,20 +57,20 @@ class AnswerCreateView(CreateView):
       form.instance.user = self.request.user
       form.instance.question = Question.objects.get(id=self.kwargs['pk'])
       return super(AnswerCreateView, self).form_valid(form)
-    
+
 class AnswerUpdateView(UpdateView):
     model = Answer
     pk_url_kwarg = 'answer_pk'
     template_name = 'answer/answer_form.html'
     fields = ['text']
-    
+
     def get_success_url(self):
       return self.object.question.get_absolute_url()
-    
+
 class AnswerDeleteView(DeleteView):
   model = Answer
   pk_url_kwarg = 'answer_pk'
   template_name = 'answer/answer_confirm_delete.html'
-  
+
   def get_success_url(self):
     return self.object.question.get_absolute_url()
