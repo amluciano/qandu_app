@@ -16,17 +16,18 @@ class Question(models.Model):
     return reverse("question_detail", args=[self.id])
 
 class Answer(models.Model):
-   question = models.ForeignKey(Question)
-   user = models.ForeignKey(User)
-   created_at = models.DateTimeField(auto_now_add=True)
-   text = models.TextField()
+    question = models.ForeignKey(Question)
+    user = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    text = models.TextField()
 
-   def __unicode__(self):
+    def __unicode__(self):
       return self.text
     
 class Vote(models.Model):
   user = models.ForeignKey(User)
-  question = models.ForeignKey(Question)
+  question = models.ForeignKey(Question, blank=True, null=True)
+  answer = models.ForeignKey(Answer, blank=True, null=True)
   
   def __unicode__(self):
     return "%s upvote" % (self.user.username)
