@@ -119,7 +119,7 @@ class VoteFormView(FormView):
             if not has_voted:
                Vote.objects.create(user=user, answer=answer)
             else:
-               prev_votes[0].delete()
+                 prev_votes[0].delete()
             return redirect(reverse('question_detail', args=[form.data["question"]]))
         except:
             prev_votes = Vote.objects.filter(user=user, question=question)
@@ -129,3 +129,9 @@ class VoteFormView(FormView):
             else:
                 prev_votes[0].delete()
         return redirect('question_list')
+
+class UserDetailView(DetailView):
+      model = User
+      slug_field = 'username'
+      template_name = 'user/user_detail.html'
+      context_object_name = 'user_in_view'

@@ -18,7 +18,7 @@
   <p><a href="{% url 'answer_delete' question_pk=question.id answer_pk=answer.id %}">Delete answer</a></p>
   {% endif %}
   <p>Answered by {{ answer.user.username }} on {{ answer.created_at }}</p>
-  <p>{{ answer.vote_set.all.count }}  Vote{{ answer.vote_set.all.count|pluralize }}</p>
+  <p>{{ answer.vote_set.all.count }} Vote{{ answer.vote_set.all.count|pluralize }}</p>
   <form method="post" action="{% url 'vote' %}">
     {% csrf_token %}
     <input type="hidden" name="answer" value="{{ answer.id }}" />
