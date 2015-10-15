@@ -65,7 +65,7 @@ class QuestionDeleteView(DeleteView):
 class AnswerCreateView(CreateView):
     model = Answer
     template_name = "answer/answer_form.html"
-    fields = ['title', 'description', 'visibility']
+    fields = ['text', 'visibility']
 
     def get_success_url(self):
       return self.object.question.get_absolute_url()
